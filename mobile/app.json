@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "PerfectMove",
+    "slug": "perfectmove",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.perfectmove",
+      "infoPlist": { "NSCameraUsageDescription": "PerfectMove records your exercise so it can check your form.", "NSMicrophoneUsageDescription": "Needed by the camera when recording video." }
+    },
+    "android": { "package": "app.perfectmove" },
+    "plugins": [
+      ["expo-image-picker", { "cameraPermission": "PerfectMove records your exercise so it can check your form." }]
+    ]
+  }
+}
