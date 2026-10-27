@@ -54,6 +54,17 @@ EXPO_PUBLIC_API_URL=http://<your-computer-LAN-IP>:8000 npx expo start
 
 Open it in Expo Go on your phone.
 
+### Deploy the backend to Hugging Face Spaces (free)
+
+1. Create an account at huggingface.co, then **New Space** → SDK **Docker** (blank), hardware **CPU basic (free)**. Note the name, e.g. `yourname/perfectmove`.
+2. In the Space → **Settings → Variables and secrets**, add a secret `ANTHROPIC_API_KEY` (optional; without it a rule-based summary is used).
+3. Create an access token at huggingface.co/settings/tokens with **Write** permission.
+4. In this GitHub repo → **Settings → Secrets and variables → Actions**: add secret `HF_TOKEN` (the token) and variable `HF_SPACE` (`yourname/perfectmove`).
+5. Run the **Deploy backend to Hugging Face** workflow (or push to `main`). The first build takes a few minutes.
+6. Your API is at `https://yourname-perfectmove.hf.space` (check `/health`). Start the app with `EXPO_PUBLIC_API_URL=https://yourname-perfectmove.hf.space npx expo start`.
+
+The free Space sleeps when idle (first request wakes it up) and its disk is ephemeral, so stored reports are lost on restart.
+
 ## Adding an exercise
 
 Write an `analyze_<exercise>(PoseSequence) -> ExerciseReport` function and register it in `backend/app/analysis/registry.py`. The app picks it up from `GET /exercises`.
